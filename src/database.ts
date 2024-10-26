@@ -1,6 +1,5 @@
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
-import { User } from './entity/User';
 
 dotenv.config();
 
@@ -14,18 +13,18 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.DB_SYNCHRONIZE === 'true',
   logging: process.env.DB_LOGGING === 'true',
   entities: [
-    User
-    // "src/models/**/*.ts", // Adjust path to your entity files
+    "src/models/*.ts", // Adjust path to your entity files
   ],
 });
 
-export const connectDatabase = async () => {
-  try {
-    await AppDataSource.initialize();
-    console.log('Database connected successfully');
-  } catch (error) {
-    console.error('Database connection error:', error);
-    process.exit(1); // Exit the process if the connection fails
-  }
-};
+
+// export const connectDatabase = async () => {
+//   try {
+//     await AppDataSource.initialize();
+//     console.log('Database connected successfully');
+//   } catch (error) {
+//     console.error('Database connection error:', error);
+//     process.exit(1); // Exit the process if the connection fails
+//   }
+// };
 
